@@ -5,6 +5,6 @@ import org.testng.annotations.Test;
 public class LoginTest extends AppTest{
     @Test
     public void login() {
-        System.out.println("Login Test");
+        log.info("\n" + "Login Test" + "\n");
     }
 }

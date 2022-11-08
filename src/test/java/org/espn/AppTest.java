@@ -9,7 +9,17 @@ public class AppTest {
 
     @BeforeSuite
     public void isPageOpen() {
-        log.info("\nOpen browser" + "\n" +
+        log.info("\n" + "Open browser" + "\n" +
                 "Tab of https://www.espn.com.co/ page open" + "\n");
+    }
+
+    @BeforeTest
+    public void isUserLoggedIn() {
+        log.info("\n" + "Check if user is logged in" + "\n");
+    }
+
+    @AfterSuite
+    public void closeBrowser() {
+        log.info("\n" + "Close browser");
     }
 }
