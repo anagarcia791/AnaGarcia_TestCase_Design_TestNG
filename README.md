@@ -1,18 +1,20 @@
-# Taller testNG
+# Taller Locators ESPN
 
-Crear Un proyecto en Java utilizando maven:
+Asegúrate de usar el siguiente enlace: https://www.espnqa.com/?src=com&_adblock=true&espn=cloud
+(cuando se cambia la localización de la página, los locators pueden cambiar)
 
-- El pom.xml debe contener la dependencia de TestNG.
-- .gitignore adaptado a sus necesidades.
-- Cree los tests para la página de ESPN (https://www.espn.com.co/) de:
-    * Iniciar sesión.
-    * Cerrar sesión.
-    * Desactivar usuario.
-- Debe imprimir en la consola cada paso realizado para la ejecución de las pruebas.
-- Idealmente usar loggers.
-- Una suite de pruebas (archivo xml) con la ejecución de las clases.
-- Incorporar el print en consola simulando los pasos que abren y cierran el browser para cada test.
+Descargar CroPath como ayuda para validar selectores: https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo
+(para buscar dentro de iFrames no funciona muy bien)
 
-Nota:
-1. Este proyecto NO DEBE INCLUIR nada relacionado con selenium, cada test debe estar conformado por sentencias que impriman en consola lo que haría un test real.
-2. La precondición sería tener una cuenta válida de ESPN para los tres tests.
+El siguiente ejercicio se puede desarrollar en Word/Google Docs pero debe exportarse en formato .pdf y se debe guardar en la carpeta raíz del repositorio en su rama.
+
+
+Basado en el ejercicio de modelaje de escenarios para:
+- Iniciar sesión
+- Cerrar sesión
+- Inhabilitar cuenta
+
+Obtener los selectores para manejar los procesos enunciados anteriormente, por favor, generar una lista cumpliendo las siguientes condiciones:
+* Nombre Vista
+* Objeto - Selector
+* Imagen con el objeto resaltado
