@@ -7,9 +7,9 @@ import org.testng.annotations.*;
 public class BaseTest {
     protected static Logger log = LoggerFactory.getLogger(BaseTest.class);
 
-    @DataProvider (name = "usersLoginData-provider")
-    public Object [][] getUsersLoginData() {
-        return new Object[][] {{"user_1@email.com", "user_1"}};
+    @DataProvider(name = "usersLoginData-provider")
+    public Object[][] getUsersLoginData() {
+        return new Object[][]{{"user_1@email.com", "user_1"}};
     }
 
     @BeforeSuite
