@@ -1,11 +1,11 @@
-package org.espn;
+package org.espn.tests;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
-public class AppTest {
-    protected static Logger log = LoggerFactory.getLogger(AppTest.class);
+public class BaseTest {
+    protected static Logger log = LoggerFactory.getLogger(BaseTest.class);
 
     @DataProvider (name = "usersLoginData-provider")
     public Object [][] getUsersLoginData() {

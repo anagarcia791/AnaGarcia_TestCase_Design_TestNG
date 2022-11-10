@@ -3,9 +3,9 @@
 <suite name="Test suite">
     <test name="ESPN all test">
         <classes>
-            <class name="org.espn.LoginTest"></class>
-            <class name="org.espn.LogoutTest"></class>
-            <class name="org.espn.DeactivateUserTest"></class>
+            <class name="org.espn.tests.LoginTest"></class>
+            <class name="org.espn.tests.LogoutTest"></class>
+            <class name="org.espn.tests.DeactivateUserTest"></class>
         </classes>
     </test>
 </suite>

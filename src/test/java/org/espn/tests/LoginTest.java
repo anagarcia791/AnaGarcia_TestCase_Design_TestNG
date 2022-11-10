@@ -1,8 +1,8 @@
-package org.espn;
+package org.espn.tests;
 
 import org.testng.annotations.Test;
 
-public class LoginTest extends AppTest {
+public class LoginTest extends BaseTest {
     @Test(dataProvider = "usersLoginData-provider")
     public void login(String email, String password) {
         log.info("Test" + "\n" + "* If user is logged out:" + "\n" +

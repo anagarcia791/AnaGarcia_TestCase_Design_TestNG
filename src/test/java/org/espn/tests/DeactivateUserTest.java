@@ -1,8 +1,8 @@
-package org.espn;
+package org.espn.tests;
 
 import org.testng.annotations.Test;
 
-public class DeactivateUserTest extends AppTest{
+public class DeactivateUserTest extends BaseTest{
     @Test
     public void deactivateUser() {
         log.info("Test" + "\n" + "* If user is logged out:" + "\n" +
