@@ -1,6 +1,6 @@
 # Taller testNG
 
-Crear Un proyecto en Java utilizando maven:
+Crear un proyecto en Java utilizando maven:
 
 - El pom.xml debe contener la dependencia de TestNG.
 - .gitignore adaptado a sus necesidades.
