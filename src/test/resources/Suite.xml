@@ -2,17 +2,17 @@
 
 <suite name="Test suite ESPN">
     <listeners>
-        <listener class-name="org.espn.utils.Listener"></listener>
+        <listener class-name="org.espn.utils.Listener"/>
     </listeners>
 
-    <parameter name="url" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"></parameter>
+<!--    <parameter name="browser" value="chrome"/>-->
+<!--    <parameter name="url" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"/>-->
 
     <test name="ESPN all test">
-        <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="org.espn.tests.LoginTest"></class>
-            <class name="org.espn.tests.LogoutTest"></class>
-            <class name="org.espn.tests.DeactivateUserTest"></class>
+            <class name="org.espn.tests.LoginTest"/>
+            <class name="org.espn.tests.LogoutTest"/>
+            <class name="org.espn.tests.DeactivateUserTest"/>
         </classes>
     </test>
 </suite>

@@ -1,15 +1,17 @@
 package org.espn.tests;
 
+import org.espn.pages.HomePage;
+import org.espn.pages.LoginPage;
 import org.testng.annotations.Test;
+
+import static org.hamcrest.Matchers.is;
 
 public class LoginTest extends BaseTest {
     @Test(dataProvider = "usersLoginData-provider")
     public void login(String email, String password) {
-        log.info("Test" + "\n" + "* If user is logged out:" + "\n" +
-                    "  Take " + email + " and " + password + "\n" +
-                    "  Then click btn LOGIN" + "\n" +
-                    "  Finally click btn LOGOUT" + "\n" +
-                    "* If user is logged in:" + "\n" +
-                    "  Click btn LOGOUT" + "\n");
+        HomePage home = super.basePage.actionForClickUserButton();
+        LoginPage loginPage = home.actionForClickLoginButton();
+        loginPage.triggerUserLogging(email,password);
+        checkThat("test 1", home.getUsernameLogged(), is(" Ana!"));
     }
 }

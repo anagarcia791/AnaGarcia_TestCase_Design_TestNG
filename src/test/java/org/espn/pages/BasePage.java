@@ -27,8 +27,14 @@ public class BasePage extends WebOperations {
     }
 
     public HomePage actionForClickUserButton(){
+        super.waitForVisibility(espnLogo);
         super.waitForVisibility(userButton);
-        super.clickElement(userButton);
-        return new HomePage(super.getDriver());
+
+        if(isEspnLogoDisplayed() && isUserButtonDisplayed()){
+            super.clickElement(userButton);
+            return new HomePage(super.getDriver());
+        }
+
+        return null;
     }
 }

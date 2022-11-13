@@ -12,8 +12,6 @@ public class Driver {
         if(browser.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
             this.driver = new ChromeDriver();
-        }else{
-            System.out.println("check browser");
         }
     }
 

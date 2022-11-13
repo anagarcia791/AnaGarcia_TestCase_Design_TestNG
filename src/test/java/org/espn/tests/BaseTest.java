@@ -1,41 +1,53 @@
 package org.espn.tests;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
+import org.espn.configuration.Driver;
+import org.espn.pages.BasePage;
+
+import org.espn.reporting.Reporter;
+
+import org.hamcrest.Matcher;
+import org.hamcrest.MatcherAssert;
+
+import static java.lang.String.format;
+
 public class BaseTest {
-    protected static Logger log = LoggerFactory.getLogger(BaseTest.class);
+
+    private final String BROWSER = "chrome";
+    private final String URL = "https://www.espnqa.com/?src=com&_adblock=true&espn=cloud";
+
+    private Driver driver;
+    protected BasePage basePage;
 
     @DataProvider(name = "usersLoginData-provider")
     public Object[][] getUsersLoginData() {
-        return new Object[][]{{"user_1@email.com", "user_1"}};
+        return new Object[][]{{"am.garcia@globant.com", "espnTEST123"}};
     }
 
+//    @Parameters({"browser", "url"}) String browser, String url
     @BeforeSuite
     public void initialSetUp() {
-        log.info("BeforeSuite" + "\n" + "Open browser" + "\n" +
-                "Tab of https://www.espn.com.co/ page open" + "\n");
+        driver = new Driver(BROWSER);
+        Reporter.info("Deleting cookies");
+        driver.getDriver().manage().deleteAllCookies();
+        Reporter.info("Navigating to: " + URL);
+        driver.getDriver().get(URL);
+        driver.getDriver().manage().window().maximize();
+        basePage = new BasePage(driver.getDriver());
     }
 
-    @BeforeTest
-    public void isAccountValid() {
-        log.info("BeforeTest" + "\n" + "Check if account is valid" + "\n");
-    }
+//    @AfterSuite
+//    public void tearDown() {
+//        driver.getDriver().quit();
+//    }
 
-    @BeforeMethod
-    public void isUserLoggedIn() {
-        log.info("BeforeMethod" + "\n" + "Check if user is logged in" + "\n");
-    }
-
-    @AfterMethod
-    public void isUserLoggedOut() {
-        log.info("AfterMethod" + "\n" + "Check if user is logged out" + "\n");
-    }
-
-    @AfterSuite
-    public void tearDown() {
-        log.info("AfterSuite" + "\n" + "Clean up all Cookies" + "\n" +
-                "Close browser" + "\n");
+    protected <T> void checkThat(String description, T actualValue, Matcher<? super T> expectedValue) {
+        Reporter.info(format("Checking that " + description.toLowerCase() + "[Expectation: %s]", expectedValue));
+        try {
+            MatcherAssert.assertThat(actualValue, expectedValue);
+        } catch (AssertionError e) {
+            Reporter.error(format("Assertion Error: [%s]", e.getMessage().replaceAll("\n", "")));
+        }
     }
 }

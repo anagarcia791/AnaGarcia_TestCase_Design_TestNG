@@ -6,14 +6,17 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage{
 
-    @FindBy(css = ".account-management > .display-user")
+    @FindBy(css = "div.global-user:last-child ul.account-management li.display-user")
     private WebElement userLabelOffline;
 
-    @FindBy(css = ".account-management > .display-user > span")
+    @FindBy(css = "div.global-user:last-child ul.account-management li.display-user span")
     private WebElement userLabelOnline;
 
-    @FindBy(css = ".account-management > li:nth-child(7)")
+    @FindBy(css = "div.global-user:last-child ul.account-management li:nth-child(7)")
     private WebElement loginButton;
+
+    @FindBy (id = ".loading-container > .view-starry-night  > div > .form-section")
+    private WebElement loginIframe;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -31,8 +34,31 @@ public class HomePage extends BasePage{
         return loginButton.isDisplayed();
     }
 
+    private WebDriver changeToFormsDriver(){
+        super.waitForVisibility(loginIframe);
+        super.getDriver().switchTo().frame(loginIframe);
+        return super.getDriver();
+    }
+
     public LoginPage actionForClickLoginButton(){
-        super.clickElement(loginButton);
-        return new LoginPage(super.getDriver());
+        super.waitForVisibility(userLabelOffline);
+        super.waitForVisibility(loginButton);
+
+        if(isUserLabelOfflineDisplayed() && isLoginButtonDisplayed()){
+            System.out.println(super.getDriver() + "ANTES");
+            super.clickElement(loginButton);
+            WebDriver iFrameDriver = changeToFormsDriver();
+            System.out.println(iFrameDriver + "DESPUES");
+            return new LoginPage(iFrameDriver);
+        }
+
+        return null;
+    }
+
+    public String getUsernameLogged(){
+        if(isUserLabelOnlineDisplayed()){
+            return userLabelOnline.getText();
+        }
+        return "";
     }
 }
