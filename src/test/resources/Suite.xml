@@ -11,8 +11,8 @@
     <test name="ESPN all test">
         <classes>
             <class name="org.espn.tests.LoginTest"/>
-            <class name="org.espn.tests.LogoutTest"/>
-            <class name="org.espn.tests.DeactivateUserTest"/>
+<!--            <class name="org.espn.tests.LogoutTest"/>-->
+<!--            <class name="org.espn.tests.DeactivateUserTest"/>-->
         </classes>
     </test>
 </suite>

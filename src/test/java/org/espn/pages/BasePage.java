@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class BasePage extends WebOperations {
-
     @FindBy(css = ".container h1")
     private WebElement espnLogo;
 
@@ -18,11 +17,11 @@ public class BasePage extends WebOperations {
         super(driver);
     }
 
-    public boolean isEspnLogoDisplayed(){
+    private boolean isEspnLogoDisplayed(){
         return espnLogo.isDisplayed();
     }
 
-    public boolean isUserButtonDisplayed(){
+    private boolean isUserButtonDisplayed(){
         return userButton.isDisplayed();
     }
 

@@ -5,36 +5,35 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends HomePage{
-
-    @FindBy(id= "#InputLoginValue")
+    @FindBy(id= "InputLoginValue")
     private WebElement emailInputForm;
 
-    @FindBy (id= "#InputPassword")
+    @FindBy (id= "InputPassword")
     private WebElement passwordInputForm;
 
-    @FindBy (id= "#BtnSubmit")
+    @FindBy (id= "BtnSubmit")
     private WebElement loginButtonSubmitForm;
 
-    @FindBy (id = "#BtnCreateAccount")
+    @FindBy (id = "BtnCreateAccount")
     private WebElement signUpButtonSubmitForm;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isEmailInputFormDisplayed(){
+    private boolean isEmailInputFormDisplayed(){
         return emailInputForm.isDisplayed();
     }
 
-    public boolean isPasswordInputFormDisplayed(){
+    private boolean isPasswordInputFormDisplayed(){
         return passwordInputForm.isDisplayed();
     }
 
-    public boolean isLoginButtonSubmitFormDisplayed(){
+    private boolean isLoginButtonSubmitFormDisplayed(){
         return loginButtonSubmitForm.isDisplayed();
     }
 
-    public boolean isSignUpButtonSubmitFormDisplayed(){
+    private boolean isSignUpButtonSubmitFormDisplayed(){
         return signUpButtonSubmitForm.isDisplayed();
     }
 
@@ -49,11 +48,9 @@ public class LoginPage extends HomePage{
                 isLoginButtonSubmitFormDisplayed() &&
                 isSignUpButtonSubmitFormDisplayed()
         ){
-            emailInputForm.sendKeys(email);
-            passwordInputForm.sendKeys(password);
+            super.typeOnInput(emailInputForm, email);
+            super.typeOnInput(passwordInputForm, password);
             super.clickElement(loginButtonSubmitForm);
         }
-
     }
-
 }

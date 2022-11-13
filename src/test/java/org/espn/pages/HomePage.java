@@ -5,39 +5,37 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage{
-
-    @FindBy(css = "div.global-user:last-child ul.account-management li.display-user")
+    @FindBy(css = ".display-user")
     private WebElement userLabelOffline;
 
-    @FindBy(css = "div.global-user:last-child ul.account-management li.display-user span")
+    @FindBy(css = ".display-user span")
     private WebElement userLabelOnline;
 
-    @FindBy(css = "div.global-user:last-child ul.account-management li:nth-child(7)")
+    @FindBy(css = "ul.account-management li:nth-child(7)")
     private WebElement loginButton;
 
-    @FindBy (id = ".loading-container > .view-starry-night  > div > .form-section")
+    @FindBy (id = "oneid-iframe")
     private WebElement loginIframe;
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isUserLabelOfflineDisplayed(){
+    private boolean isUserLabelOfflineDisplayed(){
         return userLabelOffline.isDisplayed();
     }
 
-    public boolean isUserLabelOnlineDisplayed(){
+    private boolean isUserLabelOnlineDisplayed(){
         return userLabelOnline.isDisplayed();
     }
 
-    public boolean isLoginButtonDisplayed(){
+    private boolean isLoginButtonDisplayed(){
         return loginButton.isDisplayed();
     }
 
-    private WebDriver changeToFormsDriver(){
+    private void switchToFormDOM(){
         super.waitForVisibility(loginIframe);
         super.getDriver().switchTo().frame(loginIframe);
-        return super.getDriver();
     }
 
     public LoginPage actionForClickLoginButton(){
@@ -45,20 +43,21 @@ public class HomePage extends BasePage{
         super.waitForVisibility(loginButton);
 
         if(isUserLabelOfflineDisplayed() && isLoginButtonDisplayed()){
-            System.out.println(super.getDriver() + "ANTES");
             super.clickElement(loginButton);
-            WebDriver iFrameDriver = changeToFormsDriver();
-            System.out.println(iFrameDriver + "DESPUES");
-            return new LoginPage(iFrameDriver);
+            switchToFormDOM();
+            return new LoginPage(super.getDriver());
         }
 
         return null;
     }
 
     public String getUsernameLogged(){
+        super.waitForVisibility(userLabelOnline);
+
         if(isUserLabelOnlineDisplayed()){
             return userLabelOnline.getText();
         }
+
         return "";
     }
 }

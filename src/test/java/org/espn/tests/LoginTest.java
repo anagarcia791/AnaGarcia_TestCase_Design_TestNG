@@ -7,11 +7,14 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.is;
 
 public class LoginTest extends BaseTest {
-    @Test(dataProvider = "usersLoginData-provider")
+    @Test(dataProvider = "usersLoginData-provider", priority = 1)
     public void login(String email, String password) {
+        System.out.println("khe llega " + basePage);
+
         HomePage home = super.basePage.actionForClickUserButton();
         LoginPage loginPage = home.actionForClickLoginButton();
-        loginPage.triggerUserLogging(email,password);
-        checkThat("test 1", home.getUsernameLogged(), is(" Ana!"));
+        loginPage.triggerUserLogging(email, password);
+        home = super.basePage.actionForClickUserButton();
+        checkThat("Login succeeded", home.getUsernameLogged(), is("Ana!"));
     }
 }
