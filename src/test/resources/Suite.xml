@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Test suite ESPN">
-<!--    <listeners>-->
-<!--        <listener class-name="org.espn.utils.Listener"></listener>-->
-<!--    </listeners>-->
+    <listeners>
+        <listener class-name="org.espn.utils.Listener"></listener>
+    </listeners>
 
     <parameter name="url" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"></parameter>
 
