@@ -1,11 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Test suite">
+<suite name="Basic actions for active user">
+    <listeners>
+        <listener class-name="org.espn.utils.Listener"/>
+    </listeners>
+
     <test name="ESPN all test">
         <classes>
-            <class name="org.espn.LoginTest"></class>
-            <class name="org.espn.LogoutTest"></class>
-            <class name="org.espn.DeactivateUserTest"></class>
+            <class name="org.espn.tests.ActionsForActiveUserTest"/>
         </classes>
     </test>
 </suite>
