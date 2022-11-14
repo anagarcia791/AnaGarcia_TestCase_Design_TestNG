@@ -45,7 +45,7 @@ public class WebOperations {
         element.sendKeys(text);
     }
 
-    public void goToPreviousPage(){
+    public void goToPreviousPage() {
         driver.navigate().back();
     }
 }

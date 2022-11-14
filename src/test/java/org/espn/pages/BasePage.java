@@ -35,7 +35,7 @@ public class BasePage extends WebOperations {
         return userButton.isDisplayed();
     }
 
-    public void clickUserButton(){
+    public void clickUserButton() {
         super.clickElement(userButton);
     }
 

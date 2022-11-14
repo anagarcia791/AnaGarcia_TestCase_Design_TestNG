@@ -9,7 +9,7 @@ public class Driver {
     private WebDriver driver;
 
     public Driver(String browser) {
-        if(browser.equalsIgnoreCase("chrome")){
+        if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             this.driver = new ChromeDriver();
         }
