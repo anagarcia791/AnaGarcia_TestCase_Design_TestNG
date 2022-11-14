@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends BasePage{
+public class UserOptionsIFrame extends BasePage {
     @FindBy(css = ".display-user")
     private WebElement userLabelOffline;
 
@@ -14,50 +14,55 @@ public class HomePage extends BasePage{
     @FindBy(css = "ul.account-management li:nth-child(7)")
     private WebElement loginButton;
 
-    @FindBy (id = "oneid-iframe")
+    @FindBy(id = "oneid-iframe")
     private WebElement loginIframe;
 
-    public HomePage(WebDriver driver) {
+    public UserOptionsIFrame(WebDriver driver) {
         super(driver);
     }
 
-    private boolean isUserLabelOfflineDisplayed(){
+    private boolean isUserLabelOfflineDisplayed() {
+        super.waitForVisibility(userLabelOffline);
         return userLabelOffline.isDisplayed();
     }
 
-    private boolean isUserLabelOnlineDisplayed(){
+    private boolean isUserLabelOnlineDisplayed() {
+        super.waitForVisibility(userLabelOnline);
         return userLabelOnline.isDisplayed();
     }
 
-    private boolean isLoginButtonDisplayed(){
+    private boolean isLoginButtonDisplayed() {
+        super.waitForVisibility(loginButton);
         return loginButton.isDisplayed();
     }
 
-    private void switchToFormDOM(){
+    private void switchToFormDOM() {
         super.waitForVisibility(loginIframe);
         super.getDriver().switchTo().frame(loginIframe);
     }
 
-    public LoginPage actionForClickLoginButton(){
-        super.waitForVisibility(userLabelOffline);
-        super.waitForVisibility(loginButton);
+    public LoginIFrame actionForClickLoginButton() {
 
-        if(isUserLabelOfflineDisplayed() && isLoginButtonDisplayed()){
+        if (isUserLabelOfflineDisplayed() && isLoginButtonDisplayed()) {
             super.clickElement(loginButton);
             switchToFormDOM();
-            return new LoginPage(super.getDriver());
+            return new LoginIFrame(super.getDriver());
         }
 
         return null;
     }
 
-    public String getUsernameLogged(){
-        super.waitForVisibility(userLabelOnline);
+    public String getUsernameLogged() {
 
-        if(isUserLabelOnlineDisplayed()){
+        if (isUserLabelOnlineDisplayed()) {
             return userLabelOnline.getText();
         }
 
         return "";
+    }
+
+    public void goFromUserOptionsToBasePage() {
+        super.clickUserButton();
+        super.reloadPage();
     }
 }

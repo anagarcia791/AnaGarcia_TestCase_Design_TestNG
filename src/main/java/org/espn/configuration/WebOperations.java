@@ -1,11 +1,13 @@
 package org.espn.configuration;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class WebOperations {
@@ -22,28 +24,32 @@ public class WebOperations {
         return driver;
     }
 
-    public void waitForVisibility(WebElement element){
+    public void waitForVisibility(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitForClickable(WebElement element){
+    public void waitForVisibility(List<WebElement> elements) {
+        this.wait.until(ExpectedConditions.visibilityOfAllElements(elements));
+    }
+
+    public void waitForClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void clickElement(WebElement element){
+    public void clickElement(WebElement element) {
         waitForClickable(element);
         element.click();
     }
 
-    public void typeOnInput(WebElement element, String text){
+    public void typeOnInput(WebElement element, String text) {
         element.sendKeys(text);
     }
 
-//    public void reloadPage() {
-//        // driver.navigate().refresh();
-//        // driver.navigate().to(driver.getCurrentUrl());
-//    }
-//
+    public void reloadPage() {
+        driver.navigate().refresh();
+        // driver.navigate().to(driver.getCurrentUrl());
+    }
+
 //    public void goToPreviousPage(){
 //        driver.navigate().back();
 //    }
