@@ -44,6 +44,10 @@ public class UserOptionsIFrame extends BasePage {
         return logoutButton.isDisplayed();
     }
 
+    public boolean isUserDisconnected() {
+        return isUserLabelOfflineDisplayed() && isLoginButtonDisplayed();
+    }
+
     private void switchToFormDOM() {
         super.waitForVisibility(loginIframe);
         super.getDriver().switchTo().frame(loginIframe);
@@ -51,7 +55,7 @@ public class UserOptionsIFrame extends BasePage {
 
     public LoginIFrame triggerForClickOnLoginButton() {
 
-        if (isUserLabelOfflineDisplayed() && isLoginButtonDisplayed()) {
+        if (isUserDisconnected()) {
             super.clickElement(loginButton);
             switchToFormDOM();
             return new LoginIFrame(super.getDriver());
@@ -67,10 +71,6 @@ public class UserOptionsIFrame extends BasePage {
         }
 
         return "";
-    }
-
-    public boolean isUserConnected() {
-        return isUserLabelOfflineDisplayed() && isLoginButtonDisplayed();
     }
 
     public void goFromUserOptionsToBasePage() {

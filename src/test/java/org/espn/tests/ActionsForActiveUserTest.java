@@ -37,6 +37,6 @@ public class ActionsForActiveUserTest extends BaseTest {
         UserOptionsIFrame userOptionsIFrame = super.basePage.goToUserOptions();
         userOptionsIFrame.triggerForClickOnLogoutButton();
         userOptionsIFrame = super.basePage.goToUserOptions();
-        checkThat("user is disconnected", userOptionsIFrame.isUserConnected(), is(true));
+        checkThat("user is c", userOptionsIFrame.isUserDisconnected(), is(true));
     }
 }
