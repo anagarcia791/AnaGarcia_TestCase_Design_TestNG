@@ -63,6 +63,5 @@ public class UserOptionsIFrame extends BasePage {
 
     public void goFromUserOptionsToBasePage() {
         super.clickUserButton();
-        super.reloadPage();
     }
 }

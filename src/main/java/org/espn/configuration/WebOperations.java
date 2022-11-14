@@ -45,12 +45,7 @@ public class WebOperations {
         element.sendKeys(text);
     }
 
-    public void reloadPage() {
-        driver.navigate().refresh();
-        // driver.navigate().to(driver.getCurrentUrl());
+    public void goToPreviousPage(){
+        driver.navigate().back();
     }
-
-//    public void goToPreviousPage(){
-//        driver.navigate().back();
-//    }
 }

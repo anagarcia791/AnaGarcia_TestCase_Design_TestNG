@@ -18,7 +18,7 @@ public class BaseTest {
 
     @DataProvider(name = "usersLoginData-provider")
     public Object[][] getUsersLoginData() {
-        return new Object[][]{{"am.garcia@globant.com", "espnTEST123"}};
+        return new Object[][]{{"am.garcia@globant.com", "TESTespn345"}};
     }
 
     //   @Parameters({"browser", "url"}) String browser, String url

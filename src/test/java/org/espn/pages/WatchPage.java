@@ -10,11 +10,14 @@ public class WatchPage extends BasePage {
     @FindBy(css = ".BucketsContainer > div")
     private List<WebElement> carouselsContainer;
 
-    @FindBy(css = ".BucketsContainer > div:nth-child(1) > section > div:nth-child(2) > div > div > ul > li")
+    @FindBy(css = ".BucketsContainer > div:nth-child(1) > section > div:nth-child(2) > div > div > ul")
     private List<WebElement> carouselCards;
 
     @FindBy(css = ".BucketsContainer > div:nth-child(1) > section > div:nth-child(2) > div > div > ul > li:nth-child(2)")
     private WebElement carouselSecondCard;
+
+    @FindBy(css = "#fittPortal_0  > div > div > section > header > button")
+    private WebElement exitFromChooseSupplierBtn;
 
     public WatchPage(WebDriver driver) {
         super(driver);
@@ -35,6 +38,11 @@ public class WatchPage extends BasePage {
         return carouselSecondCard.isDisplayed();
     }
 
+    public boolean isExitFromChooseSupplierBtnDisplayed() {
+        super.waitForVisibility(exitFromChooseSupplierBtn);
+        return exitFromChooseSupplierBtn.isDisplayed();
+    }
+
     public boolean areWatchPageElementsDisplayed() {
         return isCarouselsContainerDisplayed() &&
                 areCarouselCardsDisplayed() &&
@@ -43,5 +51,13 @@ public class WatchPage extends BasePage {
 
     public void clickOnCarouselSecondCard() {
         super.clickElement(carouselSecondCard);
+    }
+
+    public void clickForExitFromChooseSupplier(){
+        super.clickElement(exitFromChooseSupplierBtn);
+    }
+
+    public void goToBasePage(){
+        super.goToPreviousPage();
     }
 }

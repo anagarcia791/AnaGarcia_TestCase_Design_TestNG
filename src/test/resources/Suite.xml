@@ -10,8 +10,7 @@
 
     <test name="ESPN all test">
         <classes>
-            <class name="org.espn.tests.LoginTest"/>
-            <class name="org.espn.tests.WatchPageTest"/>
+            <class name="org.espn.tests.ActionsForActiveUserTest"/>
 <!--            <class name="org.espn.tests.LogoutTest"/>-->
 <!--            <class name="org.espn.tests.DeactivateUserTest"/>-->
         </classes>
