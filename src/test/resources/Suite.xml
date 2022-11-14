@@ -1,17 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Test suite ESPN">
+<suite name="Basic actions for active user">
     <listeners>
         <listener class-name="org.espn.utils.Listener"/>
     </listeners>
 
-    <!--    <parameter name="browser" value="chrome"/>-->
-    <!--    <parameter name="url" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"/>-->
-
     <test name="ESPN all test">
         <classes>
             <class name="org.espn.tests.ActionsForActiveUserTest"/>
-            <!--            <class name="org.espn.tests.DeactivateUserTest"/>-->
         </classes>
     </test>
 </suite>

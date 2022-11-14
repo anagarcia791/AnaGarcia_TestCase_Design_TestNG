@@ -14,6 +14,9 @@ public class UserOptionsIFrame extends BasePage {
     @FindBy(css = "ul.account-management li:nth-child(7)")
     private WebElement loginButton;
 
+    @FindBy(css = "ul.account-management li:nth-child(9)")
+    private WebElement logoutButton;
+
     @FindBy(id = "oneid-iframe")
     private WebElement loginIframe;
 
@@ -36,12 +39,17 @@ public class UserOptionsIFrame extends BasePage {
         return loginButton.isDisplayed();
     }
 
+    private boolean isLogoutButtonDisplayed() {
+        super.waitForVisibility(logoutButton);
+        return logoutButton.isDisplayed();
+    }
+
     private void switchToFormDOM() {
         super.waitForVisibility(loginIframe);
         super.getDriver().switchTo().frame(loginIframe);
     }
 
-    public LoginIFrame actionForClickLoginButton() {
+    public LoginIFrame triggerForClickOnLoginButton() {
 
         if (isUserLabelOfflineDisplayed() && isLoginButtonDisplayed()) {
             super.clickElement(loginButton);
@@ -61,7 +69,17 @@ public class UserOptionsIFrame extends BasePage {
         return "";
     }
 
+    public boolean isUserConnected() {
+        return isUserLabelOfflineDisplayed() && isLoginButtonDisplayed();
+    }
+
     public void goFromUserOptionsToBasePage() {
         super.clickUserButton();
+    }
+
+    public void triggerForClickOnLogoutButton() {
+        if (isLogoutButtonDisplayed()) {
+            super.clickElement(logoutButton);
+        }
     }
 }

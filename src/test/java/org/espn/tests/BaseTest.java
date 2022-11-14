@@ -36,6 +36,11 @@ public class BaseTest {
         this.basePage = new BasePage(driver.getDriver());
     }
 
+    @AfterSuite
+    public void tearDown() {
+        driver.getDriver().quit();
+    }
+
     protected <T> void checkThat(String description, T actualValue, Matcher<? super T> expectedValue) {
         Reporter.info(format("Checking that " + description.toLowerCase() + " [Expectation: %s]", expectedValue));
         try {
