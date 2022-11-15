@@ -14,11 +14,17 @@ public class UserOptionsIFrame extends BasePage {
     @FindBy(css = "ul.account-management li:nth-child(7)")
     private WebElement loginButton;
 
+    @FindBy(css = "ul.account-management li:nth-child(5)")
+    private WebElement espnProfileButton;
+
     @FindBy(css = "ul.account-management li:nth-child(9)")
     private WebElement logoutButton;
 
     @FindBy(id = "oneid-iframe")
     private WebElement loginIframe;
+
+    @FindBy(id = "oneid-iframe")
+    private WebElement updateAccountIframe;
 
     public UserOptionsIFrame(WebDriver driver) {
         super(driver);
@@ -44,11 +50,16 @@ public class UserOptionsIFrame extends BasePage {
         return logoutButton.isDisplayed();
     }
 
+    private boolean isEspnProfileButtonDisplayed() {
+        super.waitForVisibility(espnProfileButton);
+        return espnProfileButton.isDisplayed();
+    }
+
     public boolean isUserDisconnected() {
         return isUserLabelOfflineDisplayed() && isLoginButtonDisplayed();
     }
 
-    private void switchToFormDOM() {
+    private void switchToLoginIFrameDOM() {
         super.waitForVisibility(loginIframe);
         super.getDriver().switchTo().frame(loginIframe);
     }
@@ -57,7 +68,7 @@ public class UserOptionsIFrame extends BasePage {
 
         if (isUserDisconnected()) {
             super.clickElement(loginButton);
-            switchToFormDOM();
+            switchToLoginIFrameDOM();
             return new LoginIFrame(super.getDriver());
         }
 
@@ -75,6 +86,22 @@ public class UserOptionsIFrame extends BasePage {
 
     public void goFromUserOptionsToBasePage() {
         super.clickUserButton();
+    }
+
+    private void switchToUpdateAccountIframeDOM() {
+        super.waitForVisibility(updateAccountIframe);
+        super.getDriver().switchTo().frame(updateAccountIframe);
+    }
+
+    public EspnProfileIFrame triggerForClickOnEspnProfileButton() {
+
+        if (isEspnProfileButtonDisplayed()) {
+            super.clickElement(espnProfileButton);
+            switchToUpdateAccountIframeDOM();
+            return new EspnProfileIFrame(super.getDriver());
+        }
+
+        return null;
     }
 
     public void triggerForClickOnLogoutButton() {
