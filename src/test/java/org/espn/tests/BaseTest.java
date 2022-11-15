@@ -21,11 +21,6 @@ public class BaseTest {
         return new Object[][]{{"am.garcia@globant.com", "TESTespn345"}};
     }
 
-//    @DataProvider(name = "userToDeactivate-provider")
-//    public Object[][] getUserToDeactivate() {
-//        return new Object[][]{{"agarciat791@universidadean.edu.co", "userToDeactivate-"}};
-//    }
-
     @BeforeSuite
     public void initialSetUp() {
         String BROWSER = "chrome";
@@ -43,7 +38,7 @@ public class BaseTest {
     @AfterSuite
     public void tearDown() {
         Reporter.info("Quitting driver");
-        driver.getDriver().quit();
+        //driver.getDriver().quit();
     }
 
     protected <T> void checkThat(String description, T actualValue, Matcher<? super T> expectedValue) {

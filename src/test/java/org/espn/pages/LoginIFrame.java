@@ -20,6 +20,9 @@ public class LoginIFrame extends UserOptionsIFrame {
     @FindBy(id = "BtnCreateAccount")
     private WebElement signUpButtonSubmitForm;
 
+    @FindBy(id = "oneid-iframe")
+    private WebElement signUpIframe;
+
     @FindBy(css = "#Title > span")
     private WebElement accountDeactivatedSpan;
 
@@ -77,6 +80,11 @@ public class LoginIFrame extends UserOptionsIFrame {
         super.typeOnInput(emailInputForm, email);
         super.typeOnInput(passwordInputForm, password);
         super.clickElement(loginButtonSubmitForm);
+    }
+
+    public SingUpIFrame triggerForClickOnSingUpButton() {
+        super.clickElement(signUpButtonSubmitForm);
+        return new SingUpIFrame(super.getDriver());
     }
 
     public String getEmailAccountDeactivated() {
