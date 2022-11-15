@@ -9,7 +9,7 @@ public class DeactivateUserTest extends BaseTest {
 
     private final String NAME = "test-name";
     private final String LASTNAME = "test-last-name";
-    private static String EMAIL = "test-email-16-@gmail.com";
+    private static String EMAIL = "test-email-0-@gmail.com";
     private final String PASSWORD = "test-TO-delete";
 
     public void setNewEmail() {
@@ -28,6 +28,7 @@ public class DeactivateUserTest extends BaseTest {
 
         userOptionsIFrame = super.basePage.goToUserOptions();
         userOptionsIFrame.triggerForClickOnLogoutButton();
+        userOptionsIFrame.reloadPage();
     }
 
     @Test(priority = 5)
@@ -40,8 +41,11 @@ public class DeactivateUserTest extends BaseTest {
         AccountDeleteIFrame accountDeleteIFrame = espnProfileIFrame.triggerClickOnDeleteLink();
         checkThat("modal for confirm account delete is present", accountDeleteIFrame.getTitleOfAreYouSureIframe(), is("Are you sure?"));
         accountDeleteIFrame.triggerClickOnDeletingConfirmButton();
-        accountDeleteIFrame.switchToDeletedAccountOkIFrameDOM();
-        accountDeleteIFrame.triggerClickOnDeletedAccountOkButton();
+        accountDeleteIFrame.reloadPage();
+
+        userOptionsIFrame = super.basePage.goToUserOptions();
+        userOptionsIFrame.triggerForClickOnLogoutButton();
+        userOptionsIFrame.reloadPage();
     }
 
     @Test(priority = 6)

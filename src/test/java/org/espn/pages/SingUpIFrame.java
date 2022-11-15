@@ -59,14 +59,14 @@ public class SingUpIFrame extends LoginIFrame {
     }
 
     public void triggerUserSingUp(String name, String lastName, String email, String password) {
-        System.out.println(email);
 
         if (areSingUpElementsDisplayed()) {
             super.typeOnInput(nameInputSingUpForm, name);
             super.typeOnInput(lastNameInputSingUpForm, lastName);
             super.typeOnInput(emailInputSingUpForm, email);
             super.typeOnInput(passwordInputSingUpForm, password);
-            super.clickElement(singUpButtonSubmitForm);
         }
+
+        super.clickElement(singUpButtonSubmitForm);
     }
 }

@@ -53,7 +53,7 @@ public class WatchPage extends BasePage {
         super.clickElement(carouselSecondCard);
     }
 
-    public void clickForExitFromChooseSupplier() {
+    public void clickOnExitFromChooseSupplier() {
         super.clickElement(exitFromChooseSupplierBtn);
     }
 

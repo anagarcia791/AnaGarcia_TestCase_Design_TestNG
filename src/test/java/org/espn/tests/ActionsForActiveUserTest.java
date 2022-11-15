@@ -25,7 +25,7 @@ public class ActionsForActiveUserTest extends BaseTest {
         checkThat("more than one carousel is present", watchPage.areWatchPageElementsDisplayed(), is(true));
         watchPage.clickOnCarouselSecondCard();
         checkThat("choose supplier frame is present", watchPage.isExitFromChooseSupplierBtnDisplayed(), is(true));
-        watchPage.clickForExitFromChooseSupplier();
+        watchPage.clickOnExitFromChooseSupplier();
         watchPage.goToBasePage();
         UserOptionsIFrame userOptionsIFrame = super.basePage.goToUserOptions();
         checkThat("user still connected", userOptionsIFrame.getUsernameLogged(), is("Ana!"));
@@ -36,7 +36,10 @@ public class ActionsForActiveUserTest extends BaseTest {
     public void Logout() {
         UserOptionsIFrame userOptionsIFrame = super.basePage.goToUserOptions();
         userOptionsIFrame.triggerForClickOnLogoutButton();
+        userOptionsIFrame.reloadPage();
         userOptionsIFrame = super.basePage.goToUserOptions();
         checkThat("user is disconnected", userOptionsIFrame.isUserDisconnected(), is(true));
+        userOptionsIFrame.goFromUserOptionsToBasePage();
+        userOptionsIFrame.reloadPage();
     }
 }

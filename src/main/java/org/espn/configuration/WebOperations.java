@@ -48,4 +48,8 @@ public class WebOperations {
     public void goToPreviousPage() {
         driver.navigate().back();
     }
+
+    public void reloadPage() {
+        driver.navigate().refresh();
+    }
 }

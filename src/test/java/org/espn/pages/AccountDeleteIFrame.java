@@ -15,12 +15,6 @@ public class AccountDeleteIFrame extends EspnProfileIFrame {
     @FindBy(css = ".form-section > #BtnCancel")
     private WebElement keepAccountButton;
 
-    @FindBy(id = "oneid-iframe")
-    private WebElement deletedAccountOkIFrame;
-
-    @FindBy(css = ".form-section > #BtnSubmit")
-    private WebElement deletedAccountOkButton;
-
     public AccountDeleteIFrame(WebDriver driver) {
         super(driver);
     }
@@ -40,16 +34,6 @@ public class AccountDeleteIFrame extends EspnProfileIFrame {
         return keepAccountButton.isDisplayed();
     }
 
-    private boolean isDeletedAccountOkIFrameDisplayed() {
-        super.waitForVisibility(deletedAccountOkIFrame);
-        return deletedAccountOkIFrame.isDisplayed();
-    }
-
-    private boolean isDeletedAccountOkButtonDisplayed() {
-        super.waitForVisibility(deletedAccountOkButton);
-        return deletedAccountOkButton.isDisplayed();
-    }
-
     public String getTitleOfAreYouSureIframe() {
         if (isAreYouSureSpanDisplayed() &&
                 isDeletingConfirmButtonDisplayed() &&
@@ -61,18 +45,5 @@ public class AccountDeleteIFrame extends EspnProfileIFrame {
 
     public void triggerClickOnDeletingConfirmButton() {
         super.clickElement(deletingConfirmButton);
-    }
-
-    public void switchToDeletedAccountOkIFrameDOM() {
-        if (isDeletedAccountOkIFrameDisplayed()) {
-            super.getDriver().switchTo().frame(deletedAccountOkIFrame);
-        }
-    }
-
-    public void triggerClickOnDeletedAccountOkButton() {
-
-        if (isDeletedAccountOkButtonDisplayed()) {
-            super.clickElement(deletedAccountOkButton);
-        }
     }
 }
