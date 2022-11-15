@@ -20,6 +20,15 @@ public class LoginIFrame extends UserOptionsIFrame {
     @FindBy(id = "BtnCreateAccount")
     private WebElement signUpButtonSubmitForm;
 
+    @FindBy(id = "oneid-iframe")
+    private WebElement signUpIframe;
+
+    @FindBy(css = "#Title > span")
+    private WebElement accountDeactivatedSpan;
+
+    @FindBy(css = "#TextBlock > strong")
+    private WebElement emailAccountDeactivated;
+
     public LoginIFrame(WebDriver driver) {
         super(driver);
     }
@@ -49,6 +58,16 @@ public class LoginIFrame extends UserOptionsIFrame {
         return signUpButtonSubmitForm.isDisplayed();
     }
 
+    private boolean isAccountDeactivatedSpanDisplayed() {
+        super.waitForVisibility(accountDeactivatedSpan);
+        return accountDeactivatedSpan.isDisplayed();
+    }
+
+    private boolean isEmailAccountDeactivatedDisplayed() {
+        super.waitForVisibility(emailAccountDeactivated);
+        return emailAccountDeactivated.isDisplayed();
+    }
+
     public boolean areLoginFormElementsDisplayed() {
         return isEspnLogoFormDisplayed() &&
                 isEmailInputFormDisplayed() &&
@@ -61,5 +80,21 @@ public class LoginIFrame extends UserOptionsIFrame {
         super.typeOnInput(emailInputForm, email);
         super.typeOnInput(passwordInputForm, password);
         super.clickElement(loginButtonSubmitForm);
+    }
+
+    public SingUpIFrame triggerForClickOnSingUpButton() {
+        super.clickElement(signUpButtonSubmitForm);
+        return new SingUpIFrame(super.getDriver());
+    }
+
+    public String getEmailAccountDeactivated() {
+        if (isAccountDeactivatedSpanDisplayed() &&
+                isEmailAccountDeactivatedDisplayed()
+        ) {
+            System.out.println(emailAccountDeactivated.getText());
+            return emailAccountDeactivated.getText();
+        }
+
+        return "";
     }
 }

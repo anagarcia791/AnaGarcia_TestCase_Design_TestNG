@@ -16,12 +16,11 @@ public class BaseTest {
     private Driver driver;
     protected BasePage basePage;
 
-    @DataProvider(name = "usersLoginData-provider")
-    public Object[][] getUsersLoginData() {
+    @DataProvider(name = "userLoginData-provider")
+    public Object[][] getUserLoginData() {
         return new Object[][]{{"am.garcia@globant.com", "TESTespn345"}};
     }
 
-    //   @Parameters({"browser", "url"}) String browser, String url
     @BeforeSuite
     public void initialSetUp() {
         String BROWSER = "chrome";
@@ -38,6 +37,7 @@ public class BaseTest {
 
     @AfterSuite
     public void tearDown() {
+        Reporter.info("Quitting driver");
         driver.getDriver().quit();
     }
 
