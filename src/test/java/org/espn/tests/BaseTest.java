@@ -46,7 +46,7 @@ public class BaseTest {
     @AfterClass
     public void tearDown() {
         Reporter.info("Quitting driver");
-        // driver.getDriver().quit();
+        driver.getDriver().quit();
     }
 
     @BeforeMethod

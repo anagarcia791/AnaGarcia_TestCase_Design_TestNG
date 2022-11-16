@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class WorkFlow extends WebOperations {
+    @FindBy (css = ".promo-banner-container iframe")
+    private WebElement iframeBanner;
 
     @FindBy(css = "div.PromoBanner__CloseBtn")
     private WebElement promoBannerCloseBtn;
@@ -17,8 +19,10 @@ public class WorkFlow extends WebOperations {
     }
 
     public void checkIfBannerInHomePage() {
-        if (isElementPresent(".promo-banner-container") &&
-                isElementPresent("div.PromoBanner__CloseBtn")) {
+        if (isElementPresent(".promo-banner-container")) {
+
+            super.getDriver().switchTo().frame(iframeBanner);
+
             super.clickElement(promoBannerCloseBtn);
         }
     }

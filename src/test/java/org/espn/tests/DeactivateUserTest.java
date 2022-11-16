@@ -13,12 +13,7 @@ public class DeactivateUserTest extends BaseTest {
         this.EMAIL = EMAIL;
     }
 
-    @Test
-    public void testForCloseBanner() {
-        System.out.println("....");
-    }
-
-    @Test(dataProvider = "signupData-provider", priority = 5)
+    @Test(dataProvider = "signupData-provider", priority = 4)
     public void deactivateUser(String name, String lastName, String password) {
         Reporter.info("\n---------------starting deactivate user test---------------\n");
 
@@ -43,7 +38,7 @@ public class DeactivateUserTest extends BaseTest {
         Reporter.info("\n---------------finalizing deactivate user test---------------\n");
     }
 
-    @Test(dataProvider = "signupData-provider", priority = 6)
+    @Test(dataProvider = "signupData-provider", priority = 5)
     public void confirmUserIsDeactivated(String name, String lastName, String password) {
         Reporter.info("\n---------------starting confirm user deactivated test---------------\n");
 
