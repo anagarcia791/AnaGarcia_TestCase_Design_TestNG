@@ -1,5 +1,6 @@
 package org.espn.tests;
 
+import org.espn.pages.WorkFlow;
 import org.testng.annotations.*;
 
 import org.espn.configuration.Driver;
@@ -15,6 +16,7 @@ import static java.lang.String.format;
 public class BaseTest {
     private Driver driver;
     protected MainNavBar mainNavBar;
+    protected WorkFlow workFlow;
 
     @DataProvider(name = "userLoginData-provider")
     public Object[][] getUserLoginData() {
@@ -33,6 +35,7 @@ public class BaseTest {
         driver.getDriver().get(URL);
         driver.getDriver().manage().window().maximize();
         this.mainNavBar = new MainNavBar(driver.getDriver());
+        this.workFlow = new WorkFlow(driver.getDriver());
     }
 
     @AfterClass
