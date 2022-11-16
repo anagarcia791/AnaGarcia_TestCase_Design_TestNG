@@ -1,10 +1,11 @@
 package org.espn.pages;
 
+import org.espn.configuration.WebOperations;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AccountDeleteIFrame extends EspnProfileIFrame {
+public class AccountDeleteIFrame extends WebOperations {
 
     @FindBy(css = "#Title > span")
     private WebElement areYouSureLabel;
@@ -19,25 +20,10 @@ public class AccountDeleteIFrame extends EspnProfileIFrame {
         super(driver);
     }
 
-    private boolean isAreYouSureSpanDisplayed() {
-        super.waitForVisibility(areYouSureLabel);
-        return areYouSureLabel.isDisplayed();
-    }
-
-    private boolean isDeletingConfirmButtonDisplayed() {
-        super.waitForVisibility(deletingConfirmButton);
-        return deletingConfirmButton.isDisplayed();
-    }
-
-    private boolean isKeepAccountButtonDisplayed() {
-        super.waitForVisibility(keepAccountButton);
-        return keepAccountButton.isDisplayed();
-    }
-
     public String getTitleOfAreYouSureIframe() {
-        if (isAreYouSureSpanDisplayed() &&
-                isDeletingConfirmButtonDisplayed() &&
-                isKeepAccountButtonDisplayed()) {
+        if (isElementDisplayed(areYouSureLabel) &&
+                isElementDisplayed(deletingConfirmButton) &&
+                isElementDisplayed(keepAccountButton)) {
             return areYouSureLabel.getText();
         }
         return "";
