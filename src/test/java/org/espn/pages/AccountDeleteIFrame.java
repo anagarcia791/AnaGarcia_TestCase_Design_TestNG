@@ -29,7 +29,7 @@ public class AccountDeleteIFrame extends WebOperations {
         return "";
     }
 
-    public void triggerClickOnDeletingConfirmButton() {
+    public void clickConfirmDeletingButton() {
         super.clickElement(deletingConfirmButton);
     }
 }

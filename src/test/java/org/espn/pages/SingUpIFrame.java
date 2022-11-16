@@ -26,7 +26,7 @@ public class SingUpIFrame extends WebOperations {
         super(driver);
     }
 
-    public void triggerUserSingUp(String name, String lastName, String email, String password) {
+    public void clickConfirmSingUpButton(String name, String lastName, String email, String password) {
         super.typeOnInput(nameInputSingUpForm, name);
         super.typeOnInput(lastNameInputSingUpForm, lastName);
         super.typeOnInput(emailInputSingUpForm, email);

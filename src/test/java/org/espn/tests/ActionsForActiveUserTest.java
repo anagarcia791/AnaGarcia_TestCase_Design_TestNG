@@ -11,9 +11,9 @@ public class ActionsForActiveUserTest extends BaseTest {
     @Test(dataProvider = "userLoginData-provider", priority = 1)
     public void login(String email, String password) {
         UserOptionsIFrame userOptionsIFrame = mainNavBar.goToUserOptions();
-        LoginIFrame loginIFrame = userOptionsIFrame.triggerForClickOnLoginButton();
+        LoginIFrame loginIFrame = userOptionsIFrame.clickLoginButton();
         checkThat("modal is present", loginIFrame.areLoginFormElementsDisplayed(), is(true));
-        loginIFrame.triggerUserLogging(email, password);
+        loginIFrame.clickConfirmLoginButton(email, password);
         userOptionsIFrame = mainNavBar.goToUserOptions();
         checkThat("login succeeded", userOptionsIFrame.getUsernameLogged(), is("Ana!"));
         mainNavBar.clickUserButton();
@@ -36,7 +36,7 @@ public class ActionsForActiveUserTest extends BaseTest {
     @Test(priority = 3)
     public void Logout() {
         UserOptionsIFrame userOptionsIFrame = mainNavBar.goToUserOptions();
-        userOptionsIFrame.triggerForClickOnLogoutButton();
+        userOptionsIFrame.clickLogoutButton();
         userOptionsIFrame.reloadPage();
         userOptionsIFrame = mainNavBar.goToUserOptions();
         checkThat("user is disconnected", userOptionsIFrame.isUserDisconnected(), is(true));
