@@ -22,16 +22,15 @@ public class ActionsForActiveUserTest extends BaseTest {
     @Test(priority = 2)
     public void navigationToWatchPage() {
         // HACER LOGIN
-
         WatchPage watchPage = mainNavBar.goToWatchPage();
         checkThat("more than one carousel is present", watchPage.areWatchPageElementsDisplayed(), is(true));
-        watchPage.clickOnCarouselSecondCard();
+        checkThat("title present in each carousel cards", watchPage.isCarouselCardsTitleDisplayed(), is(true));
+        watchPage.clickCarouselCard(1);
         checkThat("choose supplier frame is present", watchPage.isExitFromChooseSupplierBtnDisplayed(), is(true));
-        watchPage.clickOnExitFromChooseSupplier();
-        watchPage.goToBasePage();
+        watchPage.clickExitFromChooseSupplier();
+        watchPage.goToPreviousPage();
         UserOptionsIFrame userOptionsIFrame = mainNavBar.goToUserOptions();
         checkThat("user still connected", userOptionsIFrame.getUsernameLogged(), is("Ana!"));
-        mainNavBar.clickUserButton();
     }
 
     @Test(priority = 3)

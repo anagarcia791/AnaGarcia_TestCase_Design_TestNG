@@ -38,7 +38,7 @@ public class BaseTest {
     @AfterClass
     public void tearDown() {
         Reporter.info("Quitting driver");
-        driver.getDriver().quit();
+        //driver.getDriver().quit();
     }
 
     protected <T> void checkThat(String description, T actualValue, Matcher<? super T> expectedValue) {
