@@ -3,7 +3,7 @@ package org.espn.tests;
 import org.testng.annotations.*;
 
 import org.espn.configuration.Driver;
-import org.espn.pages.BasePage;
+import org.espn.pages.MainNavBar;
 
 import org.espn.reporting.Reporter;
 
@@ -14,14 +14,14 @@ import static java.lang.String.format;
 
 public class BaseTest {
     private Driver driver;
-    protected BasePage basePage;
+    protected MainNavBar mainNavBar;
 
     @DataProvider(name = "userLoginData-provider")
     public Object[][] getUserLoginData() {
         return new Object[][]{{"am.garcia@globant.com", "TESTespn345"}};
     }
 
-    @BeforeSuite
+    @BeforeClass
     public void initialSetUp() {
         String BROWSER = "chrome";
         String URL = "https://www.espnqa.com/?src=com&_adblock=true&espn=cloud";
@@ -32,10 +32,10 @@ public class BaseTest {
         Reporter.info("Navigating to: " + URL);
         driver.getDriver().get(URL);
         driver.getDriver().manage().window().maximize();
-        this.basePage = new BasePage(driver.getDriver());
+        this.mainNavBar = new MainNavBar(driver.getDriver());
     }
 
-    @AfterSuite
+    @AfterClass
     public void tearDown() {
         Reporter.info("Quitting driver");
         driver.getDriver().quit();

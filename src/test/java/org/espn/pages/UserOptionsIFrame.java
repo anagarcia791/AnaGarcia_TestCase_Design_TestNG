@@ -1,17 +1,18 @@
 package org.espn.pages;
 
+import org.espn.configuration.WebOperations;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class UserOptionsIFrame extends BasePage {
+public class UserOptionsIFrame extends WebOperations {
     @FindBy(css = ".display-user")
     private WebElement userLabelOffline;
 
     @FindBy(css = ".display-user span")
     private WebElement userLabelOnline;
 
-    @FindBy(css = "ul.account-management li:nth-child(7)")
+    @FindBy(css = "a[tref$='login']")
     private WebElement loginButton;
 
     @FindBy(css = "ul.account-management li:nth-child(5)")
@@ -30,83 +31,42 @@ public class UserOptionsIFrame extends BasePage {
         super(driver);
     }
 
-    private boolean isUserLabelOfflineDisplayed() {
-        super.waitForVisibility(userLabelOffline);
-        return userLabelOffline.isDisplayed();
-    }
-
-    private boolean isUserLabelOnlineDisplayed() {
-        super.waitForVisibility(userLabelOnline);
-        return userLabelOnline.isDisplayed();
-    }
-
-    private boolean isLoginButtonDisplayed() {
-        super.waitForVisibility(loginButton);
-        return loginButton.isDisplayed();
-    }
-
-    private boolean isLogoutButtonDisplayed() {
-        super.waitForVisibility(logoutButton);
-        return logoutButton.isDisplayed();
-    }
-
-    private boolean isEspnProfileButtonDisplayed() {
-        super.waitForVisibility(espnProfileButton);
-        return espnProfileButton.isDisplayed();
-    }
-
     public boolean isUserDisconnected() {
-        return isUserLabelOfflineDisplayed() && isLoginButtonDisplayed();
+        return isElementDisplayed(userLabelOffline) && isElementDisplayed(loginButton);
     }
 
     private void switchToLoginIFrameDOM() {
-        super.waitForVisibility(loginIframe);
+        isElementDisplayed(loginIframe);
         super.getDriver().switchTo().frame(loginIframe);
     }
 
     public LoginIFrame triggerForClickOnLoginButton() {
-
-        if (isUserDisconnected()) {
-            super.clickElement(loginButton);
-            switchToLoginIFrameDOM();
-            return new LoginIFrame(super.getDriver());
-        }
-
-        return null;
+        super.clickElement(loginButton);
+        switchToLoginIFrameDOM();
+        return new LoginIFrame(super.getDriver());
     }
 
     public String getUsernameLogged() {
 
-        if (isUserLabelOnlineDisplayed()) {
+        if (isElementDisplayed(userLabelOnline)) {
             return userLabelOnline.getText();
         }
 
         return "";
     }
 
-    public void goFromUserOptionsToBasePage() {
-        super.clickUserButton();
-    }
-
     private void switchToUpdateAccountIframeDOM() {
-        super.waitForVisibility(updateAccountIframe);
+        isElementDisplayed(updateAccountIframe);
         super.getDriver().switchTo().frame(updateAccountIframe);
     }
 
     public EspnProfileIFrame triggerForClickOnEspnProfileButton() {
-
-        if (isEspnProfileButtonDisplayed()) {
-            super.clickElement(espnProfileButton);
-            switchToUpdateAccountIframeDOM();
-            return new EspnProfileIFrame(super.getDriver());
-        }
-
-        return null;
+        super.clickElement(espnProfileButton);
+        switchToUpdateAccountIframeDOM();
+        return new EspnProfileIFrame(super.getDriver());
     }
 
     public void triggerForClickOnLogoutButton() {
-        if (isLogoutButtonDisplayed()) {
-            super.clickElement(logoutButton);
-        }
+        super.clickElement(logoutButton);
     }
 }

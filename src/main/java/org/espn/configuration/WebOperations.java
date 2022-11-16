@@ -1,7 +1,6 @@
 package org.espn.configuration;
 
 import java.time.Duration;
-import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,7 +15,7 @@ public class WebOperations {
 
     public WebOperations(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20L));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         initElements(driver, this);
     }
 
@@ -24,24 +23,35 @@ public class WebOperations {
         return driver;
     }
 
-    public void waitForVisibility(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+    private WebDriverWait getWait(Integer intWait) {
+        return new WebDriverWait(driver, Duration.ofSeconds(intWait));
     }
 
-    public void waitForVisibility(List<WebElement> elements) {
-        this.wait.until(ExpectedConditions.visibilityOfAllElements(elements));
+    public Boolean isElementDisplayed(WebElement element, Integer intWait) {
+        try {
+            getWait(intWait).until(ExpectedConditions.visibilityOf(element));
+            return element.isDisplayed();
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
-    public void waitForClickable(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+    public Boolean isElementDisplayed(WebElement element) {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+            return element.isDisplayed();
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     public void clickElement(WebElement element) {
-        waitForClickable(element);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
 
     public void typeOnInput(WebElement element, String text) {
+        wait.until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(text);
     }
 

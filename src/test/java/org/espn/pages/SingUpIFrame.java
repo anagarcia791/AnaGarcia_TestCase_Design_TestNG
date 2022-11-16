@@ -1,10 +1,11 @@
 package org.espn.pages;
 
+import org.espn.configuration.WebOperations;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SingUpIFrame extends LoginIFrame {
+public class SingUpIFrame extends WebOperations {
 
     @FindBy(id = "InputFirstName")
     private WebElement nameInputSingUpForm;
@@ -25,48 +26,11 @@ public class SingUpIFrame extends LoginIFrame {
         super(driver);
     }
 
-    private boolean isNameInputSingUpFormDisplayed() {
-        super.waitForVisibility(nameInputSingUpForm);
-        return nameInputSingUpForm.isDisplayed();
-    }
-
-    private boolean isLastNameInputSingUpFormDisplayed() {
-        super.waitForVisibility(lastNameInputSingUpForm);
-        return lastNameInputSingUpForm.isDisplayed();
-    }
-
-    private boolean isEmailInputSingUpFormDisplayed() {
-        super.waitForVisibility(emailInputSingUpForm);
-        return emailInputSingUpForm.isDisplayed();
-    }
-
-    private boolean isPasswordInputSingUpFormDisplayed() {
-        super.waitForVisibility(passwordInputSingUpForm);
-        return passwordInputSingUpForm.isDisplayed();
-    }
-
-    private boolean isSingUpButtonSubmitFormDisplayed() {
-        super.waitForVisibility(singUpButtonSubmitForm);
-        return singUpButtonSubmitForm.isDisplayed();
-    }
-
-    private boolean areSingUpElementsDisplayed() {
-        return isNameInputSingUpFormDisplayed() &&
-                isLastNameInputSingUpFormDisplayed() &&
-                isEmailInputSingUpFormDisplayed() &&
-                isPasswordInputSingUpFormDisplayed() &&
-                isSingUpButtonSubmitFormDisplayed();
-    }
-
     public void triggerUserSingUp(String name, String lastName, String email, String password) {
-
-        if (areSingUpElementsDisplayed()) {
-            super.typeOnInput(nameInputSingUpForm, name);
-            super.typeOnInput(lastNameInputSingUpForm, lastName);
-            super.typeOnInput(emailInputSingUpForm, email);
-            super.typeOnInput(passwordInputSingUpForm, password);
-        }
-
+        super.typeOnInput(nameInputSingUpForm, name);
+        super.typeOnInput(lastNameInputSingUpForm, lastName);
+        super.typeOnInput(emailInputSingUpForm, email);
+        super.typeOnInput(passwordInputSingUpForm, password);
         super.clickElement(singUpButtonSubmitForm);
     }
 }

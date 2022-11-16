@@ -1,10 +1,11 @@
 package org.espn.pages;
 
+import org.espn.configuration.WebOperations;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginIFrame extends UserOptionsIFrame {
+public class LoginIFrame extends WebOperations {
     @FindBy(id = "logo")
     private WebElement espnLogoForm;
 
@@ -33,47 +34,12 @@ public class LoginIFrame extends UserOptionsIFrame {
         super(driver);
     }
 
-    private boolean isEspnLogoFormDisplayed() {
-        super.waitForVisibility(espnLogoForm);
-        return espnLogoForm.isDisplayed();
-    }
-
-    private boolean isEmailInputFormDisplayed() {
-        super.waitForVisibility(emailInputForm);
-        return emailInputForm.isDisplayed();
-    }
-
-    private boolean isPasswordInputFormDisplayed() {
-        super.waitForVisibility(passwordInputForm);
-        return passwordInputForm.isDisplayed();
-    }
-
-    private boolean isLoginButtonSubmitFormDisplayed() {
-        super.waitForVisibility(loginButtonSubmitForm);
-        return loginButtonSubmitForm.isDisplayed();
-    }
-
-    private boolean isSignUpButtonSubmitFormDisplayed() {
-        super.waitForVisibility(signUpButtonSubmitForm);
-        return signUpButtonSubmitForm.isDisplayed();
-    }
-
-    private boolean isAccountDeactivatedSpanDisplayed() {
-        super.waitForVisibility(accountDeactivatedSpan);
-        return accountDeactivatedSpan.isDisplayed();
-    }
-
-    private boolean isEmailAccountDeactivatedDisplayed() {
-        super.waitForVisibility(emailAccountDeactivated);
-        return emailAccountDeactivated.isDisplayed();
-    }
-
     public boolean areLoginFormElementsDisplayed() {
-        return isEspnLogoFormDisplayed() &&
-                isEmailInputFormDisplayed() &&
-                isPasswordInputFormDisplayed() &&
-                isLoginButtonSubmitFormDisplayed() &&
-                isSignUpButtonSubmitFormDisplayed();
+        return isElementDisplayed(espnLogoForm) &&
+                isElementDisplayed(emailInputForm) &&
+                isElementDisplayed(passwordInputForm) &&
+                isElementDisplayed(loginButtonSubmitForm) &&
+                isElementDisplayed(signUpButtonSubmitForm);
     }
 
     public void triggerUserLogging(String email, String password) {
@@ -88,13 +54,9 @@ public class LoginIFrame extends UserOptionsIFrame {
     }
 
     public String getEmailAccountDeactivated() {
-        if (isAccountDeactivatedSpanDisplayed() &&
-                isEmailAccountDeactivatedDisplayed()
-        ) {
-            System.out.println(emailAccountDeactivated.getText());
+        if (isElementDisplayed(accountDeactivatedSpan) && isElementDisplayed(emailAccountDeactivated)) {
             return emailAccountDeactivated.getText();
         }
-
         return "";
     }
 }

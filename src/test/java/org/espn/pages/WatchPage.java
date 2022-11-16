@@ -1,22 +1,20 @@
 package org.espn.pages;
 
+import org.espn.configuration.WebOperations;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class WatchPage extends BasePage {
-    @FindBy(css = ".BucketsContainer > div")
+public class WatchPage extends WebOperations {
+    @FindBy(css = "section.Carousel")
     private List<WebElement> carouselsContainer;
 
-    @FindBy(css = ".BucketsContainer > div:nth-child(1) > section > div:nth-child(2) > div > div > ul")
+    @FindBy(css = "section[aria-labelledby^='bucket-40'] li")
     private List<WebElement> carouselCards;
 
-    @FindBy(css = ".BucketsContainer > div:nth-child(1) > section > div:nth-child(2) > div > div > ul > li:nth-child(2)")
-    private WebElement carouselSecondCard;
-
-    @FindBy(css = "#fittPortal_0  > div > div > section > header > button")
+    @FindBy(css = ".lightbox__closebtn")
     private WebElement exitFromChooseSupplierBtn;
 
     public WatchPage(WebDriver driver) {
@@ -24,33 +22,25 @@ public class WatchPage extends BasePage {
     }
 
     private boolean isCarouselsContainerDisplayed() {
-        super.waitForVisibility(carouselsContainer);
+        isElementDisplayed(carouselsContainer.get(0));
         return carouselsContainer.size() > 0;
     }
 
     private boolean areCarouselCardsDisplayed() {
-        super.waitForVisibility(carouselCards);
+        isElementDisplayed(carouselCards.get(0));
         return carouselCards.size() > 0;
     }
 
-    private boolean isCarouselSecondCardsDisplayed() {
-        super.waitForVisibility(carouselSecondCard);
-        return carouselSecondCard.isDisplayed();
-    }
-
-    public boolean isExitFromChooseSupplierBtnDisplayed() {
-        super.waitForVisibility(exitFromChooseSupplierBtn);
-        return exitFromChooseSupplierBtn.isDisplayed();
+    public Boolean isExitFromChooseSupplierBtnDisplayed() {
+        return isElementDisplayed(exitFromChooseSupplierBtn);
     }
 
     public boolean areWatchPageElementsDisplayed() {
-        return isCarouselsContainerDisplayed() &&
-                areCarouselCardsDisplayed() &&
-                isCarouselSecondCardsDisplayed();
+        return isCarouselsContainerDisplayed() && areCarouselCardsDisplayed();
     }
 
     public void clickOnCarouselSecondCard() {
-        super.clickElement(carouselSecondCard);
+        super.clickElement(carouselCards.get(1));
     }
 
     public void clickOnExitFromChooseSupplier() {

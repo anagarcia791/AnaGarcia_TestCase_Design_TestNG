@@ -21,36 +21,36 @@ public class DeactivateUserTest extends BaseTest {
     public void createNewUserToDeactivate() {
         setNewEmail();
 
-        UserOptionsIFrame userOptionsIFrame = super.basePage.goToUserOptions();
+        UserOptionsIFrame userOptionsIFrame = super.mainNavBar.goToUserOptions();
         LoginIFrame loginIFrame = userOptionsIFrame.triggerForClickOnLoginButton();
         SingUpIFrame singUpIFrame = loginIFrame.triggerForClickOnSingUpButton();
         singUpIFrame.triggerUserSingUp(NAME, LASTNAME, EMAIL, PASSWORD);
 
-        userOptionsIFrame = super.basePage.goToUserOptions();
+        userOptionsIFrame = super.mainNavBar.goToUserOptions();
         userOptionsIFrame.triggerForClickOnLogoutButton();
         userOptionsIFrame.reloadPage();
     }
 
     @Test(priority = 5)
     public void deactivateUser() {
-        UserOptionsIFrame userOptionsIFrame = super.basePage.goToUserOptions();
+        UserOptionsIFrame userOptionsIFrame = super.mainNavBar.goToUserOptions();
         LoginIFrame loginIFrame = userOptionsIFrame.triggerForClickOnLoginButton();
         loginIFrame.triggerUserLogging(EMAIL, PASSWORD);
-        userOptionsIFrame = super.basePage.goToUserOptions();
+        userOptionsIFrame = super.mainNavBar.goToUserOptions();
         EspnProfileIFrame espnProfileIFrame = userOptionsIFrame.triggerForClickOnEspnProfileButton();
         AccountDeleteIFrame accountDeleteIFrame = espnProfileIFrame.triggerClickOnDeleteLink();
         checkThat("modal for confirm account delete is present", accountDeleteIFrame.getTitleOfAreYouSureIframe(), is("Are you sure?"));
         accountDeleteIFrame.triggerClickOnDeletingConfirmButton();
         accountDeleteIFrame.reloadPage();
 
-        userOptionsIFrame = super.basePage.goToUserOptions();
+        userOptionsIFrame = super.mainNavBar.goToUserOptions();
         userOptionsIFrame.triggerForClickOnLogoutButton();
         userOptionsIFrame.reloadPage();
     }
 
     @Test(priority = 6)
     public void confirmUserIsDeactivated() {
-        UserOptionsIFrame userOptionsIFrame = super.basePage.goToUserOptions();
+        UserOptionsIFrame userOptionsIFrame = super.mainNavBar.goToUserOptions();
         LoginIFrame loginIFrame = userOptionsIFrame.triggerForClickOnLoginButton();
         loginIFrame.triggerUserLogging(EMAIL, PASSWORD);
         checkThat("user is deactivated", loginIFrame.getEmailAccountDeactivated(), is(EMAIL));
