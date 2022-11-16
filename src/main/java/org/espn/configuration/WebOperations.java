@@ -2,6 +2,7 @@ package org.espn.configuration;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,6 +41,15 @@ public class WebOperations {
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
             return element.isDisplayed();
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public Boolean isElementPresent(String cssSelector){
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
+            return true;
         } catch (Exception ex) {
             return false;
         }

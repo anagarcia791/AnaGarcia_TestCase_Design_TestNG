@@ -15,17 +15,17 @@ public class UserOptionsIFrame extends WebOperations {
     @FindBy(css = "a[tref$='login']")
     private WebElement loginButton;
 
-    @FindBy(css = "ul.account-management li:nth-child(5)")
+    @FindBy(css = "a[tref$='modifyAccount']")
     private WebElement espnProfileButton;
 
-    @FindBy(css = "ul.account-management li:nth-child(9)")
+    @FindBy(css = "a[onclick*='logout']")
     private WebElement logoutButton;
 
     @FindBy(id = "oneid-iframe")
     private WebElement loginIframe;
 
     @FindBy(id = "oneid-iframe")
-    private WebElement updateAccountIframe;
+    private WebElement espnProfileIframe;
 
     public UserOptionsIFrame(WebDriver driver) {
         super(driver);
@@ -40,33 +40,31 @@ public class UserOptionsIFrame extends WebOperations {
         super.getDriver().switchTo().frame(loginIframe);
     }
 
-    public LoginIFrame triggerForClickOnLoginButton() {
+    public LoginIFrame clickLoginButton() {
         super.clickElement(loginButton);
         switchToLoginIFrameDOM();
         return new LoginIFrame(super.getDriver());
     }
 
     public String getUsernameLogged() {
-
         if (isElementDisplayed(userLabelOnline)) {
             return userLabelOnline.getText();
         }
-
         return "";
     }
 
-    private void switchToUpdateAccountIframeDOM() {
-        isElementDisplayed(updateAccountIframe);
-        super.getDriver().switchTo().frame(updateAccountIframe);
+    private void switchToEspnProfileIframeIframeDOM() {
+        isElementDisplayed(espnProfileIframe);
+        super.getDriver().switchTo().frame(espnProfileIframe);
     }
 
-    public EspnProfileIFrame triggerForClickOnEspnProfileButton() {
+    public EspnProfileIFrame clickEspnProfileButton() {
         super.clickElement(espnProfileButton);
-        switchToUpdateAccountIframeDOM();
+        switchToEspnProfileIframeIframeDOM();
         return new EspnProfileIFrame(super.getDriver());
     }
 
-    public void triggerForClickOnLogoutButton() {
+    public void clickLogoutButton() {
         super.clickElement(logoutButton);
     }
 }

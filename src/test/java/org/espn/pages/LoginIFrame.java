@@ -42,13 +42,13 @@ public class LoginIFrame extends WebOperations {
                 isElementDisplayed(signUpButtonSubmitForm);
     }
 
-    public void triggerUserLogging(String email, String password) {
+    public void clickConfirmLoginButton(String email, String password) {
         super.typeOnInput(emailInputForm, email);
         super.typeOnInput(passwordInputForm, password);
         super.clickElement(loginButtonSubmitForm);
     }
 
-    public SingUpIFrame triggerForClickOnSingUpButton() {
+    public SingUpIFrame clickSingUpButton() {
         super.clickElement(signUpButtonSubmitForm);
         return new SingUpIFrame(super.getDriver());
     }
