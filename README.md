@@ -38,3 +38,13 @@ C. Deactivate Account
 Remember:
 - You should improve your code compared to the past exercise applied to ESPN web application. Include the best practices topics given.
 - Avoid using implicit waits, they end up creating idle times in the test executions.
+
+Test evidence
+
+![test_1](https://raw.githubusercontent.com/anagarcia791/AnaGarcia_TestCase_Design_TestNG/ESPN_Final_Test_Ana_Garcia/src/assets/images/test_1.PNG)
+
+![test_2](https://raw.githubusercontent.com/anagarcia791/AnaGarcia_TestCase_Design_TestNG/ESPN_Final_Test_Ana_Garcia/src/assets/images/test_2.PNG)
+
+![test_3](https://raw.githubusercontent.com/anagarcia791/AnaGarcia_TestCase_Design_TestNG/ESPN_Final_Test_Ana_Garcia/src/assets/images/test_3.PNG)
+
+![test_4](https://raw.githubusercontent.com/anagarcia791/AnaGarcia_TestCase_Design_TestNG/ESPN_Final_Test_Ana_Garcia/src/assets/images/test_4.PNG)
