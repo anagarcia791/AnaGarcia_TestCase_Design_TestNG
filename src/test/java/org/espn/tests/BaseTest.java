@@ -41,18 +41,15 @@ public class BaseTest {
         driver.getDriver().manage().window().maximize();
         this.mainNavBar = new MainNavBar(driver.getDriver());
         this.workFlow = new WorkFlow(driver.getDriver());
+
+        Reporter.info("Closing banner");
+        workFlow.checkIfBannerInHomePage();
     }
 
     @AfterClass
     public void tearDown() {
         Reporter.info("Quitting driver");
         driver.getDriver().quit();
-    }
-
-    @BeforeMethod
-    public void setUpForMethod() {
-        Reporter.info("Closing banner");
-        workFlow.checkIfBannerInHomePage();
     }
 
     protected <T> void checkThat(String description, T actualValue, Matcher<? super T> expectedValue) {
