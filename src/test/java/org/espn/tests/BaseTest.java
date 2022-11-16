@@ -23,6 +23,11 @@ public class BaseTest {
         return new Object[][]{{"am.garcia@globant.com", "TESTespn345"}};
     }
 
+    @DataProvider(name = "signupData-provider")
+    public Object[][] getNewUserData() {
+        return new Object[][]{{"test-name", "test-last-name", "test-TO-delete"}};
+    }
+
     @BeforeClass
     public void initialSetUp() {
         String BROWSER = "chrome";
@@ -41,7 +46,13 @@ public class BaseTest {
     @AfterClass
     public void tearDown() {
         Reporter.info("Quitting driver");
-        //driver.getDriver().quit();
+        // driver.getDriver().quit();
+    }
+
+    @BeforeMethod
+    public void setUpForMethod() {
+        Reporter.info("Closing banner");
+        workFlow.checkIfBannerInHomePage();
     }
 
     protected <T> void checkThat(String description, T actualValue, Matcher<? super T> expectedValue) {

@@ -1,58 +1,58 @@
 package org.espn.tests;
 
 import org.espn.pages.*;
+import org.espn.reporting.Reporter;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.is;
 
 public class DeactivateUserTest extends BaseTest {
+    private String EMAIL = "";
 
-    private final String NAME = "test-name";
-    private final String LASTNAME = "test-last-name";
-    private static String EMAIL = "test-email-0-@gmail.com";
-    private final String PASSWORD = "test-TO-delete";
-
-    public void setNewEmail() {
-        int randomValue = (int) (Math.random() * 1000);
-        EMAIL = "test-email-" + randomValue + "-@gmail.com";
+    private void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
     }
 
-    @Test(priority = 4)
-    public void createNewUserToDeactivate() {
-        setNewEmail();
-
-        UserOptionsIFrame userOptionsIFrame = super.mainNavBar.goToUserOptions();
-        LoginIFrame loginIFrame = userOptionsIFrame.clickLoginButton();
-        SingUpIFrame singUpIFrame = loginIFrame.clickSingUpButton();
-        singUpIFrame.clickConfirmSingUpButton(NAME, LASTNAME, EMAIL, PASSWORD);
-
-        userOptionsIFrame = super.mainNavBar.goToUserOptions();
-        userOptionsIFrame.clickLogoutButton();
-        userOptionsIFrame.reloadPage();
+    @Test
+    public void testForCloseBanner() {
+        System.out.println("....");
     }
 
-    @Test(priority = 5)
-    public void deactivateUser() {
+    @Test(dataProvider = "signupData-provider", priority = 5)
+    public void deactivateUser(String name, String lastName, String password) {
+        Reporter.info("\n---------------starting deactivate user test---------------\n");
+
+        Reporter.info("Sing up as precondition");
+        String email = workFlow.signupAction(mainNavBar, name, lastName, password);
+        setEMAIL(email);
+        Reporter.info("Email of new user to deactivate: " + email);
+
+
+        workFlow.loginAction(mainNavBar, EMAIL, password);
+
         UserOptionsIFrame userOptionsIFrame = super.mainNavBar.goToUserOptions();
-        LoginIFrame loginIFrame = userOptionsIFrame.clickLoginButton();
-        loginIFrame.clickConfirmLoginButton(EMAIL, PASSWORD);
-        userOptionsIFrame = super.mainNavBar.goToUserOptions();
         EspnProfileIFrame espnProfileIFrame = userOptionsIFrame.clickEspnProfileButton();
         AccountDeleteIFrame accountDeleteIFrame = espnProfileIFrame.triggerClickOnDeleteLink();
         checkThat("modal for confirm account delete is present", accountDeleteIFrame.getTitleOfAreYouSureIframe(), is("Are you sure?"));
         accountDeleteIFrame.clickConfirmDeletingButton();
         accountDeleteIFrame.reloadPage();
 
-        userOptionsIFrame = super.mainNavBar.goToUserOptions();
-        userOptionsIFrame.clickLogoutButton();
-        userOptionsIFrame.reloadPage();
+        Reporter.info("Logout as post condition");
+        workFlow.logoutAction(mainNavBar);
+
+        Reporter.info("\n---------------finalizing deactivate user test---------------\n");
     }
 
-    @Test(priority = 6)
-    public void confirmUserIsDeactivated() {
+    @Test(dataProvider = "signupData-provider", priority = 6)
+    public void confirmUserIsDeactivated(String name, String lastName, String password) {
+        Reporter.info("\n---------------starting confirm user deactivated test---------------\n");
+
         UserOptionsIFrame userOptionsIFrame = super.mainNavBar.goToUserOptions();
         LoginIFrame loginIFrame = userOptionsIFrame.clickLoginButton();
-        loginIFrame.clickConfirmLoginButton(EMAIL, PASSWORD);
+        loginIFrame.clickConfirmLoginButton(EMAIL, password);
+
         checkThat("user is deactivated", loginIFrame.getEmailAccountDeactivated(), is(EMAIL));
+
+        Reporter.info("\n---------------finalizing confirm user deactivated test---------------\n");
     }
 }
