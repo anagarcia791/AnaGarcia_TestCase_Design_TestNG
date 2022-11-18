@@ -26,11 +26,15 @@ public class SingUpIFrame extends WebOperations {
         super(driver);
     }
 
-    public void clickConfirmSingUpButton(String name, String lastName, String email, String password) {
+    public void fillSingUpInputs(String name, String lastName, String email, String password) {
         super.typeOnInput(nameInputSingUpForm, name);
         super.typeOnInput(lastNameInputSingUpForm, lastName);
         super.typeOnInput(emailInputSingUpForm, email);
         super.typeOnInput(passwordInputSingUpForm, password);
+    }
+
+    public void clickConfirmSingUpButton() {
+        super.isElementDisplayed(singUpButtonSubmitForm);
         super.clickElement(singUpButtonSubmitForm);
     }
 }
