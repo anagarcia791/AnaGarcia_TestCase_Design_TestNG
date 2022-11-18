@@ -51,7 +51,8 @@ public class WorkFlow extends WebOperations {
         UserOptionsIFrame userOptionsIFrame = mainNavBar.goToUserOptions();
         LoginIFrame loginIFrame = userOptionsIFrame.clickLoginButton();
         SingUpIFrame singUpIFrame = loginIFrame.clickSingUpButton();
-        singUpIFrame.clickConfirmSingUpButton(name, lastName, EMAIL, password);
+        singUpIFrame.fillSingUpInputs(name, lastName, EMAIL, password);
+        singUpIFrame.clickConfirmSingUpButton();
 
         logoutAction(mainNavBar);
 
