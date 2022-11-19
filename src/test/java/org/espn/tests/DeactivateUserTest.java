@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.is;
 
 public class DeactivateUserTest extends BaseTest {
-    private String EMAIL = "";
+    private static String EMAIL = "test-email-1-@gmail.com";
 
     private void setEMAIL(String EMAIL) {
         this.EMAIL = EMAIL;
