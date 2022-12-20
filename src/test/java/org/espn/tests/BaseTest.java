@@ -28,16 +28,20 @@ public class BaseTest {
         return new Object[][]{{"test-name", "test-last-name", "test-TO-delete"}};
     }
 
-    @BeforeClass
-    public void initialSetUp() {
-        String BROWSER = "chrome";
-        String URL = "https://www.espnqa.com/?src=com&_adblock=true&espn=cloud";
+    @Parameters({"url", "browser"})
+    @BeforeTest
+    public void initialSetUp(@Optional String url, @Optional String browser) {
 
-        driver = new Driver(BROWSER);
+        if (url == null && browser == null) {
+            browser = "chrome";
+            url = "https://www.espnqa.com/?src=com&_adblock=true&espn=cloud";
+        }
+
+        driver = new Driver(browser);
         Reporter.info("Deleting cookies");
         driver.getDriver().manage().deleteAllCookies();
-        Reporter.info("Navigating to: " + URL);
-        driver.getDriver().get(URL);
+        Reporter.info("Navigating to: " + url);
+        driver.getDriver().get(url);
         driver.getDriver().manage().window().maximize();
         this.mainNavBar = new MainNavBar(driver.getDriver());
         this.workFlow = new WorkFlow(driver.getDriver());
@@ -46,7 +50,7 @@ public class BaseTest {
         workFlow.checkIfBannerInHomePage();
     }
 
-    @AfterClass
+    @AfterTest
     public void tearDown() {
         Reporter.info("Quitting driver");
         driver.getDriver().quit();
