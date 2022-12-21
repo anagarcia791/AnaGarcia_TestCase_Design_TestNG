@@ -20,18 +20,14 @@ public class MainNavBar extends WebOperations {
         super(driver);
     }
 
-    public void clickUserButton() {
-        super.clickElement(userButton);
-    }
-
     public UserOptionsIFrame goToUserOptions() {
         isElementDisplayed(espnLogo);
-        clickUserButton();
-        return new UserOptionsIFrame(super.getDriver());
+        clickElement(userButton);
+        return new UserOptionsIFrame(getDriver());
     }
 
     public WatchPage goToWatchPage() {
-        super.clickElement(watchLink);
-        return new WatchPage(super.getDriver());
+        clickElement(watchLink);
+        return new WatchPage(getDriver());
     }
 }

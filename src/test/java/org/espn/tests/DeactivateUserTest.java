@@ -22,7 +22,6 @@ public class DeactivateUserTest extends BaseTest {
         setEMAIL(email);
         Reporter.info("Email of new user to deactivate: " + email);
 
-
         workFlow.loginAction(mainNavBar, EMAIL, password);
 
         UserOptionsIFrame userOptionsIFrame = super.mainNavBar.goToUserOptions();

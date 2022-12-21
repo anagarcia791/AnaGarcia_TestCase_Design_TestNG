@@ -37,13 +37,13 @@ public class UserOptionsIFrame extends WebOperations {
 
     private void switchToLoginIFrameDOM() {
         isElementDisplayed(loginIframe);
-        super.getDriver().switchTo().frame(loginIframe);
+        getDriver().switchTo().frame(loginIframe);
     }
 
     public LoginIFrame clickLoginButton() {
-        super.clickElement(loginButton);
+        clickElement(loginButton);
         switchToLoginIFrameDOM();
-        return new LoginIFrame(super.getDriver());
+        return new LoginIFrame(getDriver());
     }
 
     public String getUsernameLogged() {
@@ -55,16 +55,16 @@ public class UserOptionsIFrame extends WebOperations {
 
     private void switchToEspnProfileIframeIframeDOM() {
         isElementDisplayed(espnProfileIframe);
-        super.getDriver().switchTo().frame(espnProfileIframe);
+        getDriver().switchTo().frame(espnProfileIframe);
     }
 
     public EspnProfileIFrame clickEspnProfileButton() {
-        super.clickElement(espnProfileButton);
+        clickElement(espnProfileButton);
         switchToEspnProfileIframeIframeDOM();
-        return new EspnProfileIFrame(super.getDriver());
+        return new EspnProfileIFrame(getDriver());
     }
 
     public void clickLogoutButton() {
-        super.clickElement(logoutButton);
+        clickElement(logoutButton);
     }
 }

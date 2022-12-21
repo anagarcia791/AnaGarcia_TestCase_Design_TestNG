@@ -43,14 +43,14 @@ public class LoginIFrame extends WebOperations {
     }
 
     public void clickConfirmLoginButton(String email, String password) {
-        super.typeOnInput(emailInputForm, email);
-        super.typeOnInput(passwordInputForm, password);
-        super.clickElement(loginButtonSubmitForm);
+        typeOnInput(emailInputForm, email);
+        typeOnInput(passwordInputForm, password);
+        clickElement(loginButtonSubmitForm);
     }
 
     public SingUpIFrame clickSingUpButton() {
-        super.clickElement(signUpButtonSubmitForm);
-        return new SingUpIFrame(super.getDriver());
+        clickElement(signUpButtonSubmitForm);
+        return new SingUpIFrame(getDriver());
     }
 
     public String getEmailAccountDeactivated() {

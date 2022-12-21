@@ -60,7 +60,7 @@ public class WatchPage extends WebOperations {
     }
 
     public void clickCarouselCard(int indexCard) {
-        super.clickElement(carouselCards.get(indexCard));
+        clickElement(carouselCards.get(indexCard));
     }
 
     public Boolean isExitFromChooseSupplierBtnDisplayed() {
@@ -68,6 +68,6 @@ public class WatchPage extends WebOperations {
     }
 
     public void clickExitFromChooseSupplier() {
-        super.clickElement(exitFromChooseSupplierBtn);
+        clickElement(exitFromChooseSupplierBtn);
     }
 }

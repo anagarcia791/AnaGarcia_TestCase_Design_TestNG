@@ -18,7 +18,7 @@ public class EspnProfileIFrame extends WebOperations {
 
     public AccountDeleteIFrame triggerClickOnDeleteLink() {
         isElementDisplayed(userUpdateAccountLabel);
-        super.clickElement(deleteLink);
-        return new AccountDeleteIFrame(super.getDriver());
+        clickElement(deleteLink);
+        return new AccountDeleteIFrame(getDriver());
     }
 }

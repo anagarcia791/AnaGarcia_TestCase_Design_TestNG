@@ -20,10 +20,8 @@ public class WorkFlow extends WebOperations {
 
     public void checkIfBannerInHomePage() {
         if (isElementPresent(".promo-banner-container")) {
-
-            super.getDriver().switchTo().frame(iframeBanner);
-
-            super.clickElement(promoBannerCloseBtn);
+            getDriver().switchTo().frame(iframeBanner);
+            clickElement(promoBannerCloseBtn);
         }
     }
 
@@ -42,7 +40,6 @@ public class WorkFlow extends WebOperations {
         UserOptionsIFrame userOptionsIFrame = mainNavBar.goToUserOptions();
         userOptionsIFrame.clickLogoutButton();
         userOptionsIFrame.reloadPage();
-
     }
 
     public String signupAction(MainNavBar mainNavBar, String name, String lastName, String password) {

@@ -27,14 +27,14 @@ public class SingUpIFrame extends WebOperations {
     }
 
     public void fillSingUpInputs(String name, String lastName, String email, String password) {
-        super.typeOnInput(nameInputSingUpForm, name);
-        super.typeOnInput(lastNameInputSingUpForm, lastName);
-        super.typeOnInput(emailInputSingUpForm, email);
-        super.typeOnInput(passwordInputSingUpForm, password);
+        typeOnInput(nameInputSingUpForm, name);
+        typeOnInput(lastNameInputSingUpForm, lastName);
+        typeOnInput(emailInputSingUpForm, email);
+        typeOnInput(passwordInputSingUpForm, password);
     }
 
     public void clickConfirmSingUpButton() {
-        super.isElementDisplayed(singUpButtonSubmitForm);
-        super.clickElement(singUpButtonSubmitForm);
+        isElementDisplayed(singUpButtonSubmitForm);
+        clickElement(singUpButtonSubmitForm);
     }
 }
